@@ -14,7 +14,10 @@ void Game::Update(char* keys, char* preKeys) {
         }
     }
     else if (currentScene == Scene::GAME) {
-        player.Update(keys, preKeys);
+        // 自機が死んでいない場合のみ更新
+        if (player.IsAlive()) {
+            player.Update(keys, preKeys);
+        }
 
         for (auto& enemy : enemies) {
             enemy.Update();
@@ -34,11 +37,23 @@ void Game::Update(char* keys, char* preKeys) {
             }
         }
 
-        if (keys[DIK_BACKSPACE] && preKeys[DIK_BACKSPACE] == 0) {
+        // 敵と自機の衝突判定
+        for (auto& enemy : enemies) {
+            if (enemy.IsActive()) {
+                float dx = enemy.GetX() - player.GetX();
+                float dy = enemy.GetY() - player.GetY();
+                if (dx * dx + dy * dy < 40 * 40) {
+                    currentScene = Scene::TITLE;
+                }
+            }
+        }
+
+        if (keys[DIK_ESCAPE] && preKeys[DIK_ESCAPE] == 0) {
             currentScene = Scene::TITLE;
         }
     }
 }
+
 
 void Game::Draw() {
     if (currentScene == Scene::TITLE) {

@@ -1,6 +1,6 @@
-#include "enemy.h"
+﻿#include "enemy.h"
 #include <Novice.h>
-#include <cstdlib>
+#include <cstdlib>  // rand()用
 
 Enemy::Enemy(float startX, float startY) : x(startX), y(startY), speed(3.0f), active(true), respawnTimer(0) {}
 
@@ -12,11 +12,12 @@ void Enemy::Update() {
         }
     }
     else {
+        // リスポーンタイマー減少
         if (respawnTimer > 0) {
             respawnTimer--;
         }
         else {
-            Respawn();
+            Respawn();  // 一定時間後に復活
         }
     }
 }
@@ -30,12 +31,12 @@ void Enemy::Draw() {
 bool Enemy::IsActive() const { return active; }
 void Enemy::Deactivate() {
     active = false;
-    respawnTimer = 120;
+    respawnTimer = 120;  // 2秒後にリスポーン（60FPSの場合）
 }
 
 void Enemy::Respawn() {
-    x = (float)(rand() % 1100 + 100);
-    y = 100; 
+    x = (float)(rand() % 1100 + 100);  // 100～1200pxの範囲でランダム
+    y = 100;  // 固定の高さ
     active = true;
 }
 
