@@ -35,7 +35,6 @@ void Player::Draw() {
     for (auto& bullet : bullets) {
         bullet.Draw();
     }
-    // 死亡中は何も描画しない、または別のインジケータを表示することも可能
 }
 
 // Playerクラスの実装に追加
