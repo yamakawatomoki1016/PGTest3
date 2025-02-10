@@ -16,4 +16,5 @@ public:
     void Respawn(); // リスポーン処理
     float GetX() const;
     float GetY() const;
+    void Reset(float startX, float startY);
 };

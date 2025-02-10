@@ -42,3 +42,11 @@ void Enemy::Respawn() {
 
 float Enemy::GetX() const { return x; }
 float Enemy::GetY() const { return y; }
+
+void Enemy::Reset(float startX, float startY)
+{
+    x = startX;
+    y = startY;
+    active = true;
+    respawnTimer = 0;  // リスポーンタイマーをリセット
+}

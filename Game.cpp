@@ -44,6 +44,10 @@ void Game::Update(char* keys, char* preKeys) {
                 float dy = enemy.GetY() - player.GetY();
                 if (dx * dx + dy * dy < 40 * 40) {
                     player.Reset();
+                    for (int i = 0; i < 5; i++) {
+                        // 敵を初期位置にリセット
+                        enemies[i].Reset(static_cast<float>(200 + i * 200), 100.0f);
+                    }
                     currentScene = Scene::TITLE;
                 }
             }
