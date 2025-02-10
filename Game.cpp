@@ -9,7 +9,6 @@ Game::Game() : isRunning(true), currentScene(Scene::TITLE) {
 
 void Game::Update(char* keys, char* preKeys) {
     if (currentScene == Scene::TITLE) {
-        // SPACEキーでゲーム開始
         if (keys[DIK_SPACE] && preKeys[DIK_SPACE] == 0) {
             currentScene = Scene::GAME;
         }
@@ -35,7 +34,6 @@ void Game::Update(char* keys, char* preKeys) {
             }
         }
 
-        // バックスペースキーでタイトルに戻る
         if (keys[DIK_BACKSPACE] && preKeys[DIK_BACKSPACE] == 0) {
             currentScene = Scene::TITLE;
         }
