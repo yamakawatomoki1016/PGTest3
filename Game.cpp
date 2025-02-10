@@ -54,6 +54,11 @@ void Game::Update(char* keys, char* preKeys) {
         }
 
         if (keys[DIK_BACKSPACE] && preKeys[DIK_BACKSPACE] == 0) {
+            player.Reset();
+            for (int i = 0; i < 5; i++) {
+                // 敵を初期位置にリセット
+                enemies[i].Reset(static_cast<float>(200 + i * 200), 100.0f);
+            }
             currentScene = Scene::TITLE;
         }
     }
