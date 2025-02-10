@@ -21,6 +21,10 @@ void Player::Update(char* keys, char* preKeys) {
         bullets.erase(std::remove_if(bullets.begin(), bullets.end(),
             [](Bullet& b) { return !b.IsActive(); }), bullets.end());
     }
+    if (isAlive == false) {
+        x = 640;
+        y = 650;
+    }
 }
 
 void Player::Draw() {
@@ -37,6 +41,14 @@ void Player::Draw() {
 // Playerクラスの実装に追加
 bool Player::IsAlive() const {
     return isAlive;
+}
+
+void Player::Reset()
+{
+    x = 640;  // 初期位置にリセット
+    y = 650;
+    isAlive = true;  // プレイヤーを生存状態に
+    bullets.clear();  // 弾をクリア
 }
 
 std::vector<Bullet>& Player::GetBullets() { return bullets; }

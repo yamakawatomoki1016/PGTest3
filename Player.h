@@ -18,4 +18,5 @@ public:
     float GetX() const;
     float GetY() const;
     bool IsAlive() const; // 生死状態を返すメソッド
+    void Reset();
 };

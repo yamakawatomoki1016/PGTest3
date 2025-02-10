@@ -43,12 +43,13 @@ void Game::Update(char* keys, char* preKeys) {
                 float dx = enemy.GetX() - player.GetX();
                 float dy = enemy.GetY() - player.GetY();
                 if (dx * dx + dy * dy < 40 * 40) {
+                    player.Reset();
                     currentScene = Scene::TITLE;
                 }
             }
         }
 
-        if (keys[DIK_ESCAPE] && preKeys[DIK_ESCAPE] == 0) {
+        if (keys[DIK_BACKSPACE] && preKeys[DIK_BACKSPACE] == 0) {
             currentScene = Scene::TITLE;
         }
     }
